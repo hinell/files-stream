@@ -1,8 +1,8 @@
 # Files stream
 Simple Readable stream a list of files for io.js.
 
-This module allow you gather your data-files into one single readable stream that
-provide a simple way for streaming your data asynchronously somewhere you want.
+This module allow gather your data-files into the single readable stream
+and provide a simple way to stream your data-flow where you want.
 
 ## Installation
 
@@ -14,8 +14,6 @@ $ git clone https://github.com/hinell/files-stream
 ```
 
 ## Example Usage
-
-Just run:
 
 ```
 $ node example.js
@@ -55,7 +53,7 @@ var FilesStream  = require("../path to module/");
 ```
 
 Where *`nameOfYourStream`* is optional.
-Before creation stream, you can also
+Before a stream creation, you can also
 specify in `options` your own an optional *`delimiter`* field (which by default is "r\n\"):
 ```javascript
 	stream   = new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
@@ -73,3 +71,6 @@ The each of them return nothing.
 
 ## License
 See LICENSE file for more info.
+
+## Todo
+Method for conversion data on fly.
