@@ -1,0 +1,29 @@
+{
+  "name": "files-stream",
+  "version": "1.0.4",
+  "description": "Stream module that makes single stream of several files.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hinell/files-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "streaming",
+    "several",
+    "files",
+    "hinell"
+  ],
+  "author": "Hinell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hinell/files-stream/issues"
+  },
+  "homepage": "https://github.com/hinell/files-stream#readme"
+}
