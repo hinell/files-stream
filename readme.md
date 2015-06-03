@@ -1,13 +1,13 @@
 # Files stream
 Module for streaming several files as single for io.js and node.js.
 
-This module allow gather your data-files into the single readable stream
-and provide a simple way to stream your data-flow where you want.
+This module allow gather your data-files into single readable stream
+through which you can stream them as one indivisible file.
 
 ## Installation
 
 This module can be installed via `git`.
-Also you need to have installed iojs.
+Also you need to have installed io or node .js.
 
 ```
 $ git clone https://github.com/hinell/files-stream
@@ -54,28 +54,23 @@ new FilesStream(nameOfYourStream,options)
 ```
 
 Where *`nameOfYourStream`* is optional.
-Before stream creation, in *`options`* you can
-use optional parameter *`delimiter`* (by default is "r\n\") - string which separate reading each file:
+In *`options`* , before stream creation you can
+use optional parameter *`delimiter`* (by default is "r\n\") - string which separates each file in stream:
 ```javascript
 	stream   = new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
 ```
-Note, the *`options`* also will be used reading each file into buffer.
-
-Module have addFiles method to adding a files:
 
 ```javascript
-	stream.addFiles(["pathToFile","pathToFile",..etc]) // Appends a file paths to streaming. Return itself.
+    // Appends a file paths to streaming. Return itself.
+	stream.addFiles(["pathToFile","pathToFile",..etc])
 
 ```
 
+Notice, the *`options`* also will be used for reading each file's chunk into buffer.
+
 ## Testing
 
-Ensure you have installed mocha cli and run:
-
-`$ npm test`
-
-or
-
+Uses Mocha testing framework:
 `$ mocha`
 
 ## License
