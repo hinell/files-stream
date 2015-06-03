@@ -6,7 +6,7 @@ var ourInvokations      = 1000
 
 
     describe('Files stream testing.', function () {
-        describe('When file is reading', function () {
+        context('When file is reading', function () {
             this.timeout(2*1000*10)
             it('should throw error if file not exists', function (done) {
                 new FilesStream()
@@ -17,6 +17,7 @@ var ourInvokations      = 1000
 
 
             })
+
 
             it('files should have specified delimiter', function (done) {
                 new FilesStream({delemiter:'<FILEDELEMITER>'})
