@@ -37,7 +37,8 @@ var FilesStream     = require(".");
 ```
 
 ## API
-All module interfaces is inherited of the Readable stream and Events emitter Classes:
+All module interfaces (include options parameter and events) are inherited
+of the Readable stream and Events emitter Classes:
 
 ```javascript
 
@@ -53,24 +54,22 @@ var FilesStream  = require("../path to module/");
 ```
 
 Where *`nameOfYourStream`* is optional.
-Before a stream creation, you can also
-specify in `options` your own an optional *`delimiter`* field (which by default is "r\n\"):
+Before stream creation, in *`options`* you can
+use optional parameter *`delimiter`* (by default is "r\n\") - string which separate reading each file:
 ```javascript
 	stream   = new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
 ```
-Note, the *`options`* also will be passed in each stream of paths that you have specified previously .
+Note, the *`options`* also will be used reading each file into buffer.
 
-Module also has two its own methods:
+Module have addFiles method to adding a files:
 
 ```javascript
-	stream.addFiles(["pathToFile","pathToFile",..etc]) // Appends file paths to streaming
-	stream.addName ("name of your stream")             // Name of stream. Optional.
+	stream.addFiles(["pathToFile","pathToFile",..etc]) // Appends a file paths to streaming. Return itself.
 
 ```
-The each of them return nothing.
 
 ## License
 See LICENSE file for more info.
 
-## Todo
-Method for conversion data on fly.
+## To do
+Data conversion method.

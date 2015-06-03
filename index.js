@@ -21,6 +21,7 @@ var ReadStream   = fs.ReadStream
         var notArray  = !(array instanceof Array)
         if (notArray) throw new Error ("Required an array containing paths")
         this._sources = array
+        return this
     }
     FilesStream.prototype._read              = function (chunkSize) {
         var filePath  = this._sources[this._index]
