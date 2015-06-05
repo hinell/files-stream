@@ -1,7 +1,7 @@
 {
   "name": "files-stream",
-  "version": "1.0.4",
-  "description": "Stream module that makes single stream of several files.",
+  "version": "1.0.5",
+  "description": "Module for node.js and io.js for create stream of several files.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -18,7 +18,12 @@
     "streaming",
     "several",
     "files",
-    "hinell"
+    "hinell",
+    "server",
+    "side",
+    "fs",
+    "file",
+    "system"
   ],
   "author": "Hinell",
   "license": "MIT",

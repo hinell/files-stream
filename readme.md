@@ -1,15 +1,17 @@
 # Files stream
-Module for streaming several files as single for io.js and node.js.
-
-This module allow gather your data-files into single readable stream
-through which you can stream them as one indivisible file.
+This module uses several files sources to making of them a single indivisible stream,
+using which you can send its buffered data as simple flow either into another existing
+file (similar to tools for a file concatenation), or for example into a server respond
+or into somewhere else. Please see below for more info about details of a module working.
 
 ## Installation
 
-This module can be installed via `git`.
-Also you need to have installed io or node .js.
+This module can be installed via `git` or `npm`.
+Before usage, you need to have installed io.js or node.js.
 
 ```
+$ npm install files-stream
+
 $ git clone https://github.com/hinell/files-stream
 ```
 
@@ -54,27 +56,26 @@ new FilesStream(nameOfYourStream,options)
 ```
 
 Where *`nameOfYourStream`* is optional.
-In *`options`* , before stream creation you can
-use optional parameter *`delimiter`* (by default is "r\n\") - string which separates each file in stream:
+In *`options`* property, before stream creation you can
+use optional parameter *`delimiter`* (by default is "r\n\") - string which separates each file in the stream:
 ```javascript
-	stream   = new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
-```
-
-```javascript
+	stream = new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
     // Appends a file paths to streaming. Return itself.
 	stream.addFiles(["pathToFile","pathToFile",..etc])
 
 ```
 
-Notice, the *`options`* also will be used for reading each file's chunk into buffer.
+Notice: the *`options`* property is used for reading each a file chunk into buffer,
+so it allow you specify the file encoding of reading in further.
 
 ## Testing
+It is working through mocha testing framework:
 
-Uses Mocha testing framework:
 `$ mocha`
 
 ## License
-See LICENSE file for more info.
+See [LICENSE](https://github.com/hinell/files-stream/blob/master/LICENSE) file for more info.
 
 ## To do
-Data conversion method.
+1) Data conversion method.
+2) Facilities allowing specifying encoding parameter for each file
