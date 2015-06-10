@@ -1,8 +1,17 @@
 # Files stream
+
+[![npm package](https://nodei.co/npm/files-stream.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/files-stream/)
+
 This module uses several files sources to making of them a single indivisible stream,
 using which you can send its buffered data as simple flow either into another existing
 file (similar to tools for a file concatenation), or for example into a server respond
 or into somewhere else. Please see below for more info about details of a module working.
+
+## Table of contents
+
+- [Installation](#Installation)
+- [Example Usage](#Example-Usage)
+- [API](#API)
 
 ## Installation
 
@@ -11,8 +20,6 @@ Before usage, you need to have installed io.js or node.js.
 
 ```
 $ npm install files-stream
-
-$ git clone https://github.com/hinell/files-stream
 ```
 
 ## Example Usage
@@ -25,7 +32,7 @@ $ node example.js
 //  example.js
 
 var WriteStream     = require("fs").WriteStream;
-var FilesStream     = require("./");
+var FilesStream     = require("files-stream");
 new FilesStream()
         .addFiles([ './test/file.1.txt',
                     './test/file.2.txt',
@@ -77,3 +84,4 @@ MIT.
 ## To do
 1) Data conversion method.
 2) Facilities allowing specifying encoding parameter for each file
+3) More examples
