@@ -40,18 +40,20 @@ new FilesStream()
 
 ## API
 All module's interfaces (include options parameter and events) are inherited
-of the Readable stream and Events emitter Classes:
+of the [Readable stream](https://iojs.org/api/stream.html#stream_class_stream_readable)
+and [Events emitter](https://iojs.org/api/events.html) classes:
 
 ```javascript
 
 var FilesStream  = require("../path to module/");
-new FilesStream(nameOfYourStream,options)
-        .addFiles(// any stuff)
-        .on("readable" ,callback)
-        .on("error"    ,callback)
-        .on("close"    ,callback)
-        .on("data"     ,callback)
-        .on("end"      ,callback)
+new FilesStream('stream name',options)
+        .addFiles(['./file/path'[,'./file/path']])
+        .setEncoding('utf8')
+        .on("readable" ,handler)
+        .on("error"    ,handler)
+        .on("close"    ,handler)
+        .on("data"     ,handler)
+        .on("end"      ,handler)
 
 ```
 
@@ -59,22 +61,18 @@ Where *`nameOfYourStream`* is optional.
 In *`options`* property, before stream creation you can
 use optional parameter *`delimiter`* (by default is "r\n\") - string which separates each file in the stream:
 ```javascript
-	stream = new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
-    // Appends a file paths to streaming. Return itself.
-	stream.addFiles(["pathToFile","pathToFile",..etc])
+	new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
+	.addFiles(['./file/path'[,'./file/path']]) // files for reading, returns itself
 
 ```
 
-Notice: the *`options`* property is used for reading each a file chunk into buffer,
-so it allow you specify the file encoding of reading in further.
+Notice: the *`options`* property allow you to specify default encoding as well as this does .setEncoding() method.
 
 ## Testing
-It is working through mocha testing framework:
-
 `$ mocha`
 
 ## License
-See [LICENSE](https://github.com/hinell/files-stream/blob/master/LICENSE) file for more info.
+MIT.
 
 ## To do
 1) Data conversion method.
