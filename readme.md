@@ -9,9 +9,9 @@ or into somewhere else. Please see below for more info about details of a module
 
 ## Table of contents
 
-- [Installation](#Installation)
-- [Example Usage](#Example-Usage)
-- [API](#API)
+- [Installation](#installation)
+- [Example Usage](#example-usage)
+- [API](#api)
 
 ## Installation
 
