@@ -1,7 +1,7 @@
 {
   "name": "files-stream",
-  "version": "1.0.5",
-  "description": "Module for node.js and io.js for create stream of several files.",
+  "version": "1.0.6",
+  "description": "Module for node.js and io.js for create file-stream of several files.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -22,6 +22,8 @@
     "server",
     "side",
     "fs",
+    "files-stream",
+    "file-stream",
     "file",
     "system"
   ],

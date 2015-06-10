@@ -6,13 +6,11 @@ var ReadStream   = fs.ReadStream
         if (typeof name === "string") this.name = name
         else                          options   = name
         Readable.call(this,options)
-        options             = options || {}
-        this.options        = options
-        this._dataDelimiter = options.delimiter || false
+        this.options        = options = options || {}
+        this._dataDelimiter = options.delimiter || null
         this._sources       = []
         this._index         = 0
         this.__fRead        = 0
-        this.__fExists      = true
     };
 
     iherits(FilesStream,Readable)
@@ -45,18 +43,17 @@ var ReadStream   = fs.ReadStream
                 if (err) { readFail.call(this,err,fd);return}
                 var sizeofFile  = stats.size
                 var readed      = this.__fRead
-                if (readed !== sizeofFile){
+                if (readed < sizeofFile){
                     if ((readed+chunkSize)>sizeofFile) chunkSize = sizeofFile-readed
-                    var buffer = new Buffer(chunkSize,this.encoding)
-                    read(fd,buffer,0,chunkSize,readed, (function (err,l,buff) {
+                    read(fd,new Buffer(chunkSize),0,chunkSize,readed, (function (err,l,buff) {
                         if (err) { readFail.call(this,err,fd);return}
-                        this.push(buff)
+                        this.push(buff.toString())
                         this.__fRead+=chunkSize
                     }).bind(this))
                 } else {
                     this.__fRead = 0
                     this._index++
-                    this.push(new Buffer(this._dataDelimiter || "\r\n",this.encoding))
+                    this.push(this._dataDelimiter || "\r\n")
                     close(fd)
                     this.emit('close')
                 }
