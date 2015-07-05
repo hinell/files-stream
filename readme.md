@@ -2,10 +2,7 @@
 
 [![npm package](https://nodei.co/npm/files-stream.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/files-stream/)
 
-This module uses several files sources to making of them a single indivisible stream,
-using which you can send its buffered data as simple flow either into another existing
-file (similar to tools for a file concatenation), or for example into a server respond
-or into somewhere else. Please see below for more info about details of a module working.
+The Io.js and Node.js module that uses several files as sources for streaming them like a single joined (gathered, bundled) data flow into any other WritableStream.
 
 ## Table of contents
 
@@ -15,8 +12,9 @@ or into somewhere else. Please see below for more info about details of a module
 
 ## Installation
 
-This module can be installed via `git` or `npm`.
-Before usage, you need to have installed io.js or node.js.
+Module can be installed via `git` or `npm`.
+Before, you need to have installed io.js or node.js.
+Then:
 
 ```
 $ npm install files-stream
@@ -46,7 +44,7 @@ new FilesStream()
 ```
 
 ## API
-All module's interfaces (include options parameter and events) are inherited
+All module's interfaces (it's includes options parameter and events) are inherited
 of the [Readable stream](https://iojs.org/api/stream.html#stream_class_stream_readable)
 and [Events emitter](https://iojs.org/api/events.html) classes:
 
@@ -64,16 +62,21 @@ new FilesStream('stream name',options)
 
 ```
 
-Where *`nameOfYourStream`* is optional.
-In *`options`* property, before stream creation you can
-use optional parameter *`delimiter`* (by default is "r\n\") - string which separates each file in the stream:
+Where *`'stream name'`* and *`options`* are optional.
+
+*`options`* *`.delimiter`* (by default contains "r\n\") - string for separating each sources' file. Will have placed only between each of two files.
+
+*`options`* *`.encoding`* - like .setEncoding() method - allows to set default encoding for reading.
+
 ```javascript
-	new FilesStream("stream",{delimiter:"\r\n<NEXT FILE HERE>\r\n"})
+	new FilesStream("stream",{
+	delimiter:"\r\n<NEXT FILE HERE>\r\n"
+	encoding :"ASCII"
+	})
 	.addFiles(['./file/path'[,'./file/path']]) // files for reading, returns itself
 
 ```
 
-Notice: the *`options`* property allow you to specify default encoding as well as this does .setEncoding() method.
 
 ## Testing
 `$ mocha`
@@ -82,6 +85,8 @@ Notice: the *`options`* property allow you to specify default encoding as well a
 MIT.
 
 ## To do
-1) Data conversion method.
-2) Facilities allowing specifying encoding parameter for each file
-3) More examples
+1) Express integration
+2) More examples
+3) Data conversion method.
+4) Facilities allowing specifying encoding parameter for each file
+
