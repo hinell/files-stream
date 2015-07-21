@@ -77,6 +77,7 @@ var expressApp.get( /**/,FSS.express('./file/path'[,'./file/path'|options]))
 Static *`FSS.express()`* method resembles the same behavior which have the *`files-stream`* Class constructor, but being just route callback for Express. 
 
 Where *`options`* are optional and can be placed in arbitrary place of arguments order.
+
 |Possible options|Default|Description|
 |--- |--- |--- |
 |*`options.delimiter`* | r\n\ | String-delimiter. Placed only between two files. If error occurs on some file, will be placed in order before this erroneous file|
@@ -91,10 +92,9 @@ Where *`options`* are optional and can be placed in arbitrary place of arguments
 MIT.
 
 ## To do
-- []  Bufferization
 
+- [ ]  Bufferization
 - [x] ~~Express integration~~
-
 - [x] ~~More examples~~~~
 
 ---
