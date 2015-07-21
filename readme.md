@@ -1,81 +1,87 @@
 # Files stream
 
-[![npm package](https://nodei.co/npm/files-stream.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/files-stream/)
 
-The Io.js and Node.js module that uses several files as sources for streaming them like a single joined (gathered, bundled) data flow into any other WritableStream.
+The Io.js and Node.js module for concatenation files on fly. Predominantly for textual the files' formats.
 
-## Table of contents
 
-- [Installation](#installation)
-- [Example Usage](#example-usage)
-- [API](#api)
+|What's here?| [INSTALL](#installation) | [USAGE](#example-usage) | [API](#api) |[TESTS](#testing)|
+|---| --- | --- | ---|---|
 
 ## Installation
 
-Module can be installed via `git` or `npm`.
-Before, you need to have installed io.js or node.js.
-Then:
-
+Module can be installed either via `git` or via `npm`.
+Before, you have to installed io.js or node.js and git. 
+After all, you can clone this repo (for latest version) or just run command below:
 ```
 $ npm install files-stream
 ```
 
+
 ## Example Usage
 
 ```
-$ node example.js
+$ node example.js // in module directory
 ```
 
 ```javascript
 //  example.js
 
-var WriteStream     = require("fs").WriteStream;
-var FilesStream     = require("files-stream");
-new FilesStream()
-        .addFiles([ './test/file.1.txt',
-                    './test/file.2.txt',
-                    './test/file.3.txt',
-                    './test/file.not.exists.txt'])
+var WS            = require("fs").WriteStream;
+var FSS           = require("./");
+new FSS({delimiter : '\r\nI\'m between each file!\r\n', encoding  : 'ASCII'},
+        './test/file.4.txt',
+        './test/file.2.txt',
+        './test/file.3.txt',
+        './test/file.1.txt') // file does not exists
         .on("error", function (err) {
-            if (err) console.log(" Ooops! File  ./file.not.exists.txt don't exists:\r\n",err.message);
+            if (err) console.log(" Ooops! \r\n",err.message);
         })
-        .pipe(new WriteStream("./my.three.files.txt"))
+        .on('end' ,console.log.bind(console,'If there is no errors you will able to see me only once!'))
+        .pipe(new WS("./my.three.files.txt"))
+
+```
+Epress integration:
+```javascript
+// Warninig: Don't use this module in production!
+// Because module haven't yet data bufferization it still has some troubles in files reading
+// process, so you have to use this module for development only. 
+// See below for more info about express integration.
+var express     = require('express')
+var streamOf    = require('files-stream').express
+var myApp       = express()
+	myApp.get('/bundle.js',streamOf(''))
+    myApp.listen(8080)
 
 ```
 
+
 ## API
-All module's interfaces (it's includes options parameter and events) are inherited
+All module's interfaces (including options parameter and events) are inherited
 of the [Readable stream](https://iojs.org/api/stream.html#stream_class_stream_readable)
 and [Events emitter](https://iojs.org/api/events.html) classes:
 
 ```javascript
 
-var FilesStream  = require("../path to module/");
-new FilesStream('stream name',options)
-        .addFiles(['./file/path'[,'./file/path']])
+var FSS  = require("../path to module/");
+new FSS('./file/path'[,'./file/path'|options])
         .setEncoding('utf8')
         .on("readable" ,handler)
         .on("error"    ,handler)
-        .on("close"    ,handler)
         .on("data"     ,handler)
         .on("end"      ,handler)
-
+// or...
+new FSS(options).addFiles(['./file/path'[,'./file/path']]).on(//etc)
+// For Express
+var expressApp.get( /**/,FSS.express('./file/path'[,'./file/path'|options]))
 ```
+Static *`FSS.express()`* method resembles the same behavior which have the *`files-stream`* Class constructor, but being just route callback for Express. 
 
-Where *`'stream name'`* and *`options`* are optional.
+Where *`options`* are optional and can be placed in arbitrary place of arguments order.
+|Possible options|Default|Description|
+|--- |--- |--- |
+|*`options.delimiter`* | r\n\ | String-delimiter. Placed only between two files. If error occurs on some file, will be placed in order before this erroneous file|
+|*`options.encoding`*  | utf8 | Resembles [.setEncoding()](https://iojs.org/api/stream.html#stream_readable_setencoding_encoding) method which set up  encoding to read each file|
 
-*`options`* *`.delimiter`* (by default contains "r\n\") - string for separating each sources' file. Will have placed only between each of two files.
-
-*`options`* *`.encoding`* - like .setEncoding() method - allows to set default encoding for reading.
-
-```javascript
-	new FilesStream("stream",{
-	delimiter:"\r\n<NEXT FILE HERE>\r\n"
-	encoding :"ASCII"
-	})
-	.addFiles(['./file/path'[,'./file/path']]) // files for reading, returns itself
-
-```
 
 
 ## Testing
@@ -85,8 +91,11 @@ Where *`'stream name'`* and *`options`* are optional.
 MIT.
 
 ## To do
-1) Express integration
-2) More examples
-3) Data conversion method.
-4) Facilities allowing specifying encoding parameter for each file
+- []  Bufferization
 
+- [x] ~~Express integration~~
+
+- [x] ~~More examples~~~~
+
+---
+[![npm package](https://nodei.co/npm/files-stream.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/files-stream/)
