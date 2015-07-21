@@ -1,7 +1,7 @@
 {
   "name": "files-stream",
-  "version": "1.0.8",
-  "description": "Module for node.js and io.js for create file-stream of several files.",
+  "version": "1.0.9",
+  "description": "Module for node.js and io.js for files concatenation on fly.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -37,5 +37,5 @@
   "bugs": {
     "url": "https://github.com/hinell/files-stream/issues"
   },
-  "homepage": "https://github.com/hinell/files-stream#readme"
+  "homepage": "https://github.com/hinell/files-stream"
 }

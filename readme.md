@@ -1,7 +1,7 @@
 # Files stream
 
 
-The Io.js and Node.js module for concatenation files on fly. Predominantly for textual the files' formats.
+The Io.js and Node.js module for concatenation files on fly. Basically for the textual files's formats only.
 
 
 |What's here?| [INSTALL](#installation) | [USAGE](#example-usage) | [API](#api) |[TESTS](#testing)|
@@ -43,8 +43,8 @@ new FSS({delimiter : '\r\nI\'m between each file!\r\n', encoding  : 'ASCII'},
 Epress integration:
 ```javascript
 // Warninig: Don't use this module in production!
-// Because module haven't yet data bufferization it still has some troubles in files reading
-// process, so you have to use this module for development only. 
+// Because module haven't yet data bufferization it still remains some troubles in files reading
+// process, so because you have to use this module for development only.
 // See below for more info about express integration.
 var express     = require('express')
 var streamOf    = require('files-stream').express
