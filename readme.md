@@ -74,7 +74,7 @@ new FSS(options).addFiles(['./file/path'[,'./file/path']]).on(//etc)
 // For Express
 var expressApp.get( /**/,FSS.express('./file/path'[,'./file/path'|options]))
 ```
-Static *`FSS.express()`* method resembles the same behavior which have the *`files-stream`* Class constructor, but being just route callback for Express. 
+Static *`FSS.express()`* method resembles the same behavior of the *`files-stream`* Class constructor but standing simple callback function. 
 
 Where *`options`* are optional and can be placed in arbitrary place of arguments order.
 
