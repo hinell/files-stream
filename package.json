@@ -1,6 +1,6 @@
 {
   "name": "files-stream",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Module for node.js and io.js for create file-stream of several files.",
   "main": "index.js",
   "directories": {
@@ -25,7 +25,12 @@
     "files-stream",
     "file-stream",
     "file",
-    "system"
+    "system",
+    "express",
+    "concatenation",
+    "on fly",
+    "fly concatenation",
+    "development"
   ],
   "author": "Hinell",
   "license": "MIT",
