@@ -1,7 +1,7 @@
 # Files stream
 
 
-The Io.js and Node.js module for concatenation files on fly. Basically for the textual files's formats only.
+Io.js and Node.js module for file concatenation on fly.
 
 
 |What's here?| [INSTALL](#installation) | [USAGE](#example-usage) | [API](#api) |[TESTS](#testing)|
@@ -10,8 +10,8 @@ The Io.js and Node.js module for concatenation files on fly. Basically for the t
 ## Installation
 
 Module can be installed either via `git` or via `npm`.
-Before, you have to installed io.js or node.js and git. 
-After all, you can clone this repo (for latest version) or just run command below:
+Before, you have to install io.js (or node.js) and git. 
+After all, clone this repo (for latest version) or just run:
 ```
 $ npm install files-stream
 ```
@@ -20,7 +20,7 @@ $ npm install files-stream
 ## Example Usage
 
 ```
-$ node example.js // in module directory
+$ node example.js //  of module dir
 ```
 
 ```javascript
@@ -43,13 +43,15 @@ new FSS({delimiter : '\r\nI\'m between each file!\r\n', encoding  : 'ASCII'},
 Epress integration:
 ```javascript
 // Warninig: Don't use this module in production!
-// Because module haven't yet data bufferization it still remains some troubles in files reading
-// process, so because you have to use this module for development only.
+// Since module doesn't supports data bufferization it still keeps some troubles in files reading
+// process, so in that way you have to use this module in case of development only.
 // See below for more info about express integration.
 var express     = require('express')
 var streamOf    = require('files-stream').express
 var myApp       = express()
-	myApp.get('/bundle.js',streamOf(''))
+    myApp.get('/bundle.js',streamOf(	'./dist/jQuery.min.js',
+					'./dist/main.min.js',
+					'./dist/modules.min.js'))
     myApp.listen(8080)
 
 ```
@@ -62,7 +64,7 @@ and [Events emitter](https://iojs.org/api/events.html) classes:
 
 ```javascript
 
-var FSS  = require("../path to module/");
+var FSS  = require('files-stream');
 new FSS('./file/path'[,'./file/path'|options])
         .setEncoding('utf8')
         .on("readable" ,handler)
@@ -72,9 +74,9 @@ new FSS('./file/path'[,'./file/path'|options])
 // or...
 new FSS(options).addFiles(['./file/path'[,'./file/path']]).on(//etc)
 // For Express
-var expressApp.get( /**/,FSS.express('./file/path'[,'./file/path'|options]))
+var expressApp.get( '/myRoute',FSS.express('./file/path'[,'./file/path'|options]))
 ```
-Static *`FSS.express()`* method resembles the same behavior of the *`files-stream`* Class constructor but standing simple callback function. 
+Static *`.express()`* method just the same *`files-stream`* Class build function resembles similar behavior without any resctrictions. 
 
 Where *`options`* are optional and can be placed in arbitrary place of arguments order.
 
@@ -95,7 +97,7 @@ MIT.
 
 - [ ]  Bufferization
 - [x] ~~Express integration~~
-- [x] ~~More examples~~~~
+- [x] ~~More examples~~
 
 ---
 [![npm package](https://nodei.co/npm/files-stream.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/files-stream/)
