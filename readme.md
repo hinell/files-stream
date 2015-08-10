@@ -36,7 +36,7 @@ new FSS({delimiter : '\r\nI\'m between each file!\r\n', encoding  : 'ASCII'},
         .on("error", function (err) {
             if (err) console.log(" Ooops! \r\n",err.message);
         })
-        .on('end' ,console.log.bind(console,'If there is no errors you will able to see me only once!'))
+        .on('end' ,console.log.bind(console,'you will see me only if there has been occurred no errors '))
         .pipe(new WS("./my.three.files.txt"))
 
 ```
@@ -76,7 +76,7 @@ new FSS(options).addFiles(['./file/path'[,'./file/path']]).on(//etc)
 // For Express
 var expressApp.get( '/myRoute',FSS.express('./file/path'[,'./file/path'|options]))
 ```
-Static *`.express()`* method just the same *`files-stream`* Class build function resembles similar behavior without any resctrictions. 
+Static *`.express()`* method is just the same *`files-stream`* constructor with the same behavior without any resctrictions. 
 
 Where *`options`* are optional and can be placed in arbitrary place of arguments order.
 
@@ -84,8 +84,6 @@ Where *`options`* are optional and can be placed in arbitrary place of arguments
 |--- |--- |--- |
 |*`options.delimiter`* | r\n\ | String-delimiter. Placed only between two files. If error occurs on some file, will be placed in order before this erroneous file|
 |*`options.encoding`*  | utf8 | Resembles [.setEncoding()](https://iojs.org/api/stream.html#stream_readable_setencoding_encoding) method which set up  encoding to read each file|
-
-
 
 ## Testing
 `$ mocha`
