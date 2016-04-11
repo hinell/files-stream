@@ -1,26 +1,23 @@
 # Files stream
 
+Lightweight module for file concatenation on fly.
 
-Io.js and Node.js module for file concatenation on fly.
 
-
-|What's here?| [INSTALL](#installation) | [USAGE](#example-usage) | [API](#api) |[TESTS](#testing)|
+|Content| [INSTALL](#installation) | [USAGE](#example-usage) | [API](#api) |[TESTS](#testing)|
 |---| --- | --- | ---|---|
 
 ## Installation
 
-Module can be installed either via `git` or via `npm`.
-Before, you have to install io.js (or node.js) and git. 
-After all, clone this repo (for latest version) or just run:
+Make sure you have installd `git` or `npm` then just clone this repo or run:
 ```
-$ npm install files-stream
+$ npm install hinell/files-stream --production
 ```
 
 
 ## Example Usage
 
 ```
-$ node example.js //  of module dir
+$ node example.js
 ```
 
 ```javascript
@@ -42,24 +39,24 @@ new FSS({delimiter : '\r\nI\'m between each file!\r\n', encoding  : 'ASCII'},
 ```
 Epress integration:
 ```javascript
-// Warninig: Don't use this module in production!
-// Since module doesn't supports data bufferization it still keeps some troubles in files reading
-// process, so in that way you have to use this module in case of development only.
+// Warninig: Don't use this module in production if you don't sure what you do!
+// Since the module doesn't supports data bufferization and keeps some troubles in file reading
+// you have to use this module in development purpose only.
 // See below for more info about express integration.
 var express     = require('express')
 var streamOf    = require('files-stream').express
 var myApp       = express()
-    myApp.get('/bundle.js',streamOf(	'./dist/jQuery.min.js',
-					'./dist/main.min.js',
-					'./dist/modules.min.js'))
+    myApp.get('/bundle.js',streamOf(
+	'./dist/jQuery.min.js',
+	'./dist/main.min.js',
+	'./dist/modules.min.js'))
     myApp.listen(8080)
-
 ```
 
 
 ## API
 All module's interfaces (including options parameter and events) are inherited
-of the [Readable stream](https://iojs.org/api/stream.html#stream_class_stream_readable)
+from the [Readable stream](https://iojs.org/api/stream.html#stream_class_stream_readable)
 and [Events emitter](https://iojs.org/api/events.html) classes:
 
 ```javascript
@@ -76,7 +73,7 @@ new FSS(options).addFiles(['./file/path'[,'./file/path']]).on(//etc)
 // For Express
 var expressApp.get( '/myRoute',FSS.express('./file/path'[,'./file/path'|options]))
 ```
-Static *`.express()`* method is just the same *`files-stream`* constructor with the same behavior without any resctrictions. 
+Static *`.express()`* method is just the same as *`files-stream`* constructor with the same behavior without any resctrictions. 
 
 Where *`options`* are optional and can be placed in arbitrary place of arguments order.
 
